@@ -231,7 +231,7 @@
 
         // 折线图默认参数
         line: {
-          smooth : true,
+          //smooth : true,
           symbol: 'emptyCircle',  // 拐点图形类型
           symbolSize: 3           // 拐点图形大小
         },
