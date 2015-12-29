@@ -43,16 +43,16 @@ angular.module("template/zPagination/zPagination.html", []).run(["$templateCache
   $templateCache.put("template/zPagination/zPagination.html",
     "  <div class='input-group z-pagination'>\n" +
     "    <div class='input-group-btn'>\n" +
-    "       <button class='btn btn-default' aria-label='First' ng-click='toFirst()'>««</button>\n" +
-    "       <button class='btn btn-default' aria-label='Previous' ng-click='toPrev()'>«</button>\n" +
+    "       <button class='btn btn-default' aria-label='First' ng-disabled='curPage==1' ng-click='toFirst()'>««</button>\n" +
+    "       <button class='btn btn-default' aria-label='Previous' ng-disabled='curPage==1' ng-click='toPrev()'>«</button>\n" +
     "       <button class='btn btn-default' aria-label='PreviousGroup' ng-if='start>1' ng-click='toPrevGroup()'>…</button>\n" +
-    "       <button class='btn btn-default' ng-repeat='pageNum in tagList' ng-class='{\"active\":curPage==pageNum}' ng-click='curPage=pageNum'>{{pageNum}}</button>\n" +
+    "       <button class='btn btn-default' ng-repeat='pageNum in tagList' ng-class='{\"active\":curPage==pageNum}' ng-click='toPage(pageNum)'>{{pageNum}}</button>\n" +
     "    </div>\n" +
-    "    <input type='text' class='form-control' >\n" +
+    "    <input type='number' class='form-control' ng-model='pageInput' ng-keypress='inputPage($event)'>\n" +
     "    <div class='input-group-btn'>\n" +
     "       <button class='btn btn-default' aria-label='NextGroup' ng-if='end<pageTotal' ng-click='toNextGroup()'>…</button>\n" +
-    "       <button class='btn btn-default' aria-label='Next' ng-click='toNext()'>»</button>\n" +
-    "       <button class='btn btn-default' aria-label='End' ng-click='toEnd()'>»»</button>\n" +
+    "       <button class='btn btn-default' aria-label='Next' ng-disabled='curPage==pageTotal' ng-click='toNext()'>»</button>\n" +
+    "       <button class='btn btn-default' aria-label='End' ng-disabled='curPage==pageTotal' ng-click='toEnd()'>»»</button>\n" +
     "    </div>\n" +
     "  </div>\n"
   );
