@@ -69,8 +69,12 @@ angular
           scope.$watch('currentSelect',function(newValue,oldValue) {
             tree.toggle(newValue);
           });
-          //				scope.$watch('treeData', function() {
-          //					$timeout(function(){
+          scope.$watch('treeData', function(newValue) {
+            $timeout(function () {
+              tree.collapse_all();
+              tree.toggle(scope.currentSelect);
+            }, 0)
+        
           ////						debugger;
           //						if(scope.mouseEnterClass) {
           //							element.find("a").addClass(scope.mouseEnterClass);
@@ -87,8 +91,8 @@ angular
           //						eachTreeScope(scope.$$childHead.$nodesScope,function(nodeScope) {
           //							nodeScope.active = false;
           //						});
-          //					},0)
-          //				}, true);
+
+          }, true);
 
           //				var toggleSameLevel = function(nodeScope) {
           //					eachTreeScope(nodeScope.$parent.$parent,function(eachNodeScope) {
