@@ -1,6 +1,9 @@
 /**
  * Created by z on 10/26/15.
  */
+(function() {
+  'use strict';
+
 angular
   .module('z.angular.loading', [])
 
@@ -36,3 +39,4 @@ angular
       }
     };
   }]);
+}());
