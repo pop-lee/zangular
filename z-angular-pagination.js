@@ -54,42 +54,57 @@
           //总页数
           scope.pageTotal = 1;
 
+          scope.pageInput = null;
+
+          scope.toPage = function(page){
+            var toPage = parseInt(page);
+            if(toPage < 1) toPage = 1;
+            if(toPage > scope.pageTotal) toPage = scope.pageTotal;
+            if(toPage < scope.start || toPage>scope.end){
+              scope.start = Math.min(Math.floor((toPage-1)/scope.maxTag) * scope.maxTag + 1, scope.pageTotal - scope.maxTag + 1);
+            }
+            scope.curPage = toPage;
+          };
+
+          scope.inputPage = function(ev){
+            if(ev.keyCode == 13 && typeof(scope.pageInput) == "number"){
+              scope.toPage(scope.pageInput);
+              scope.pageInput = null;
+            }
+          };
+
           scope.toFirst = function() {
-            scope.curPage = 1;
+            scope.toPage(1);
           };
 
           scope.toEnd = function() {
-            scope.curPage = pageTotal;
+            scope.toPage(scope.pageTotal);
           };
 
           scope.toPrev = function() {
-            scope.curPage = Math.max(scope.curPage - 1,1);
-            if(scope.curPage<scope.start) {
-              scope.start = scope.curPage;
-            }
+            scope.toPage(scope.curPage - 1);
           };
 
           scope.toNext = function() {
-            scope.curPage = Math.min(scope.curPage + 1,scope.pageTotal);
-            if(scope.curPage>scope.end) {
-              scope.start = Math.max(scope.curPage - scope.maxTag,1);
-            }
+            scope.toPage(scope.curPage + 1);
           };
 
           scope.toPrevGroup = function() {
-            scope.start = scope.curPage = Math.max(scope.start - scope.maxTag,1);
+            scope.start = Math.max(scope.start - scope.maxTag,1);
           };
 
-          scope.toPrevGroup = function() {
-            scope.start = scope.curPage = Math.min(scope.start + scope.maxTag,scope.pageTotal + 1 - scope.maxTag);
+          scope.toNextGroup = function() {
+            scope.start = Math.min(scope.start + scope.maxTag,scope.pageTotal + 1 - scope.maxTag);
           };
 
           scope.$watch('dataCount',function(newValue) {
-            scope.pageTotal = scope.dataCount/scope.perPage + 1;
+            scope.pageTotal = Math.ceil(scope.dataCount/scope.perPage);
+            scope.end = Math.min(scope.start + scope.maxTag - 1,scope.pageTotal);
+            refreshTag();
           });
 
           scope.$watch('start',function() {
-            scope.end = Math.min(scope.curPage + scope.maxTag - 1,scope.pageTotal);
+            scope.end = Math.min(scope.start + scope.maxTag - 1,scope.pageTotal);
             refreshTag();
           });
 
