@@ -20,10 +20,14 @@
 
           var select2Option = {
             //placeholder: "Select a state"
-            //width: '100%',
+            width: '100%',
             //allowClear: true,
             tags:false
           };
+
+            if(attrs.minimumResultsForSearch) {
+                select2Option.minimumResultsForSearch = attrs.minimumResultsForSearch;
+            }
 
           if(element.is('select')) {
             element.select2(select2Option);
