@@ -10,13 +10,13 @@
     .directive('zSelect', ['$templateCache','$compile',function ($templateCache,$compile) {
       return {
         restrict: 'A',
-        require:'ngModel',
+        //require:'ngModel',
         scope: {
           //multiple:'@'
         },
         link: function (scope, element, attrs, controller) {
 
-          scope.ngModel = "";
+          //scope.ngModel = "";
 
           var select2Option = {
             //placeholder: "Select a state"
