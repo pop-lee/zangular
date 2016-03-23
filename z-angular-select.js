@@ -16,6 +16,11 @@
                 },
                 link: function (scope, element, attrs, controller) {
 
+                    scope.$on("$destroy",function() {
+                        element.prop("disabled", true);
+                        element.select2('close');
+                    });
+
                     scope.ngModel = "";
                     scope.select2 = null;
 
@@ -33,9 +38,6 @@
 
                     if(element.is('select')) {
                         scope.select2 = element.select2(select2Option);
-                        scope.select2.on('select2-blur',function() {
-                            debugger;
-                        });
                     } else {
                         throw error("此指令需是用在select标签上");
                     }
