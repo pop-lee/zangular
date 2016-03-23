@@ -42,11 +42,13 @@
                         throw error("此指令需是用在select标签上");
                     }
 
-                    $timeout(function() {
-                        $(element.parent().find('.select2-selection')).on('blur',function() {
-                            element.select2('close');
-                        });
-                    });
+                    //$timeout(function() {
+                    //    $(element.next().find('.select2-selection')).on('blur',function() {
+                    //        $timeout(function() {
+                    //            element.select2('close');
+                    //        });
+                    //    });
+                    //});
 
                     if(attrs.multiple) {
                         if(attrs.tags==="true") {
