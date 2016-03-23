@@ -25,6 +25,7 @@
             tags:false
           };
 
+            //隐藏下拉菜单中的搜索框
             if(attrs.minimumResultsForSearch) {
                 select2Option.minimumResultsForSearch = attrs.minimumResultsForSearch;
             }
