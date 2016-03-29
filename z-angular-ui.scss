@@ -15,10 +15,24 @@
 
 
 .z-pagination {
+
+  float: right;
+  display: block;
+
+
   .input-group-btn {
+    float: left;
+    display: table;
     .btn:hover,
     .btn:focus {
       z-index: 3;
     }
   }
+
+  input {
+    //float: left;
+    //display: table;
+    max-width: 80px;
+  }
+
 }

@@ -12,6 +12,7 @@
                 restrict: 'A',
                 require:'ngModel',
                 scope: {
+                    ngModel:'='
                     //multiple:'@'
                 },
                 link: function (scope, element, attrs, controller) {
@@ -21,8 +22,13 @@
                         element.select2('close');
                     });
 
-                    scope.ngModel = "";
+                    //scope.ngModel = "";
                     scope.select2 = null;
+
+                    $timeout(function() {
+                        scope.select2.val(scope.ngModel);
+                        scope.select2.trigger("change");
+                    });
 
                     var select2Option = {
                         //placeholder: "Select a state"
