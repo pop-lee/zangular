@@ -19,7 +19,8 @@
 
                     scope.$on("$destroy",function() {
                         element.prop("disabled", true);
-                        element.select2('close');
+                        //element.select2('close');
+                        scope.select2.trigger("select2:close");
                     });
 
                     //scope.ngModel = "";
