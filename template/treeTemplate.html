@@ -1,0 +1,24 @@
+<div ui-tree drag-enabled="false" ng-include="'items_renderer.html'">
+    <!-- 动画效果及菜单折叠依赖于ui-bootstrap -->
+    <script type="text/ng-template" id="items_renderer.html">
+        <div ng-if="this.depth()>0"
+             ng-include="template"
+             ng-class="['tree-level-'+this.depth()+'-a']">
+
+            <!--<a nodrag ng-dblclick="onDbClick(this)" ng-click="onClick(this)" ng-class="['tree-level-'+this.depth()+'-a']">-->
+                <!--&lt;!&ndash;<i class="fa fa-sitemap"></i>&ndash;&gt;-->
+                <!--<input ng-show="treeShowCheckbox" type="checkbox" ng-click="checked_change(item,$event)"-->
+                       <!--ng-checked="item.checked">-->
+                <!--{{item.label}}-->
+                <!--<i class="fa arrow"-->
+                   <!--ng-style="{true:{},false:{'visibility':'hidden'}}[item.children!=undefined&&item.children.length>0]"></i>-->
+            <!--</a>-->
+
+        </div>
+        <ul ui-tree-nodes class="nav tree-level" ng-model="item.children" ng-attr-collapse="collapsed">
+            <li ui-tree-node ng-repeat="item in item.children"
+                ng-class="['tree-level-'+this.depth()+'-li',active?'active':'',collapsed?'collapsed':'expanded']"
+                collapsed="true" ng-attr-active="active" ng-include="'items_renderer.html'"></li>
+        </ul>
+    </script>
+</div>
