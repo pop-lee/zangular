@@ -64,6 +64,13 @@
                         }
                     }
 
+                    scope.$watch('ngModel', function () {
+                        $timeout(function () {
+                            scope.select2.val(scope.ngModel);
+                            scope.select2.trigger("change");
+                        });
+                    });
+
                 }
             };
         }]);
