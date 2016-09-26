@@ -14,6 +14,7 @@ angular
         zLoading:'='
       },
       link: function(scope,element,attrs,controller){
+        var hiddenTimer;
 
         if(!$rootScope.loadingModal) {
           var loadingHTML = $templateCache.get("template/zLoading/zLoading.html");
@@ -28,9 +29,10 @@ angular
           //  return;
           //}
           if(newValue&&newValue.constructor == Boolean) {
+            $timeout.cancel(hiddenTimer);
             $rootScope.loadingModal.show();
           } else {
-            $timeout(function() {
+            hiddenTimer = $timeout(function() {
               $rootScope.loadingModal.hide();
             }, 200);
           }
