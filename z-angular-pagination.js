@@ -98,6 +98,9 @@
           };
 
           scope.$watch('dataCount',function(newValue) {
+            if (!angular.isNumber(scope.dataCount) || scope.dataCount<=0){
+                scope.dataCount = 1;
+            }
             scope.pageTotal = Math.ceil(scope.dataCount/scope.perPage);
             scope.end = Math.min(scope.start + scope.maxTag - 1,scope.pageTotal);
             refreshTag();
