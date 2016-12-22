@@ -61,7 +61,7 @@
             if(toPage < 1) toPage = 1;
             if(toPage > scope.pageTotal) toPage = scope.pageTotal;
             if(toPage < scope.start || toPage>scope.end){
-              scope.start = Math.min(Math.floor((toPage-1)/scope.maxTag) * scope.maxTag + 1, scope.pageTotal - scope.maxTag + 1);
+              scope.start = Math.min(Math.floor((toPage-1)/scope.maxTag) * scope.maxTag + 1, Math.max(scope.pageTotal - scope.maxTag + 1,1));
             }
             scope.curPage = toPage;
           };
@@ -109,6 +109,12 @@
           scope.$watch('start',function() {
             scope.end = Math.min(scope.start + scope.maxTag - 1,scope.pageTotal);
             refreshTag();
+          });
+
+          scope.$watch('curPage',function(newValue){
+              if(newValue < scope.start || newValue>scope.end){
+                  scope.start = Math.min(Math.floor((newValue-1)/scope.maxTag) * scope.maxTag + 1, Math.max(scope.pageTotal - scope.maxTag + 1,1));
+              }
           });
 
           var refreshTag = function() {
